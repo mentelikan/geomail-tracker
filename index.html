@@ -1,17 +1,45 @@
 <!DOCTYPE html>
-<html>
-<body>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>GeoMail Tracker</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+  <div id="loginCard" class="bg-white p-8 rounded-xl shadow-md w-96">
+    <h2 class="text-xl font-bold mb-4">Ingreso GeoMail</h2>
+    <input id="email" type="email" placeholder="Correo" class="w-full p-2 border mb-3 rounded">
+    <input id="password" type="password" placeholder="Contraseña" class="w-full p-2 border mb-4 rounded">
+    <button onclick="login()" class="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700">Ingresar</button>
+  </div>
+
   <script>
-    // 1. Pega tu URL aquí (ejemplo: https://eakkeayyxoejjrivwymi.supabase.co)
-    const supabaseUrl = 'sb_publishable_nkQo0K9YchcNpClhCRi4ug_u7uyetOr
-'; 
+    // 1. URL de tu proyecto
+    const supabaseUrl = 'https://eakkeayyxoejjrivwymi.supabase.co'; 
     
-    // 2. Pega tu API KEY aquí (la que copiaste que empieza por sb_publishable...)
-    const supabaseKey = 'eakkeayyxoejjrivwymi'; 
+    // 2. PEGA TU KEY AQUÍ (La que empieza por sb_publishable...)
+    const supabaseKey = 'sb_publishable_nkQo0K9YchcNpClhCRi4ug_u7uyetOr'; 
     
     const supabase = supabase.createClient(supabaseUrl, supabaseKey);
-    console.log("Conexión preparada:", supabase);
+
+    async function login() {
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: email,
+        password: password,
+      });
+
+      if (error) {
+        alert("Error: " + error.message);
+      } else {
+        alert("¡Conexión exitosa! Bienvenido.");
+        document.getElementById('loginCard').innerHTML = "<h1>Sesión iniciada correctamente</h1>";
+      }
+    }
   </script>
 </body>
 </html>

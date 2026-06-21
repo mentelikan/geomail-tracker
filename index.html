@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GeoMail Tracker - Panel de Gestiòn</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-container": "#6cf8bb",
+                    "error": "#ba1a1a",
+                    "on-error": "#ffffff",
+                    "primary-container": "#0a2540",
+                    "primary-fixed-dim": "#b0c8eb",
+                    "on-tertiary": "#ffffff",
+                    "inverse-on-surface": "#eaf1ff",
+                    "on-primary-fixed-variant": "#314865",
+                    "on-primary": "#ffffff",
+                    "on-surface-variant": "#43474d",
+                    "surface-tint": "#49607e",
+                    "surface-dim": "#cbdbf5",
+                    "on-secondary-fixed": "#002113",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed": "#d2e4ff",
+                    "secondary": "#006c49",
+                    "primary": "#000f22",
+                    "inverse-surface": "#213145",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "outline-variant": "#c4c6ce",
+                    "on-secondary-container": "#00714d",
+                    "surface-variant": "#d3e4fe",
+                    "outline": "#74777e",
+                    "inverse-primary": "#b0c8eb",
+                    "tertiary": "#190c00",
+                    "tertiary-container": "#361f00",
+                    "on-secondary": "#ffffff",
+                    "secondary-fixed": "#6ffbbe",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "on-error-container": "#93000a",
+                    "on-background": "#0b1c30",
+                    "secondary-fixed-dim": "#4edea3",
+                    "surface-container-low": "#eff4ff",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-container": "#c27c00",
+                    "on-secondary-fixed-variant": "#005236",
+                    "on-primary-container": "#768dad",
+                    "surface-container-high": "#dce9ff",
+                    "tertiary-fixed": "#ffddb8",
+                    "background": "#f8f9ff",
+                    "surface-container": "#e5eeff",
+                    "surface-bright": "#f8f9ff",
+                    "on-tertiary-fixed": "#2a1700",
+                    "on-surface": "#0b1c30",
+                    "surface": "#f8f9ff",
+                    "on-primary-fixed": "#001c37",
+                    "surface-container-highest": "#d3e4fe"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "gutter": "16px",
+                    "base": "8px",
+                    "margin-mobile": "16px",
+                    "xs": "4px",
+                    "xl": "64px",
+                    "md": "24px",
+                    "lg": "40px",
+                    "sm": "12px",
+                    "margin-desktop": "32px"
+            },
+            "fontFamily": {
+                    "headline-sm": ["Inter"],
+                    "numeric-data": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "numeric-data": ["18px", {"lineHeight": "24px", "fontWeight": "700"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .scroll-hide::-webkit-scrollbar { display: none; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(8px);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface scroll-hide">
+<!-- Sidebar Navigation -->
+<aside class="fixed left-0 top-0 h-full w-64 bg-primary-container dark:bg-surface-container-lowest border-r border-outline-variant shadow-md flex flex-col py-lg px-md z-50">
+<div class="mb-xl px-xs">
+<h1 class="font-headline-sm text-headline-sm text-on-primary-container dark:text-primary font-black uppercase tracking-tighter">GeoMail</h1>
+<p class="font-label-md text-label-md text-on-primary-container opacity-60">Logística Pro</p>
+</div>
+<nav class="flex-grow space-y-xs">
+<!-- Clientes -->
+<div class="flex items-center gap-base p-sm cursor-pointer mb-xs text-on-primary-container opacity-80 hover:opacity-100 hover:bg-primary-fixed-dim/20 transition-all rounded-lg">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md text-label-md">Clientes</span>
+</div>
+<!-- Campañas (Active) -->
+<div class="flex items-center gap-base p-sm cursor-pointer mb-xs bg-secondary-container text-on-secondary-container font-bold rounded-lg transition-all">
+<span class="material-symbols-outlined">campaign</span>
+<span class="font-label-md text-label-md">Campa\u00f1as</span>
+</div>
+<!-- Usuarios -->
+<div class="flex items-center gap-base p-sm cursor-pointer mb-xs text-on-primary-container opacity-80 hover:opacity-100 hover:bg-primary-fixed-dim/20 transition-all rounded-lg">
+<span class="material-symbols-outlined">person_cancel</span>
+<span class="font-label-md text-label-md">Usuarios</span>
+</div>
+<!-- Reportes -->
+<div class="flex items-center gap-base p-sm cursor-pointer mb-xs text-on-primary-container opacity-80 hover:opacity-100 hover:bg-primary-fixed-dim/20 transition-all rounded-lg">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-md text-label-md">Reportes</span>
+</div>
+<!-- Google Drive -->
+<div class="flex items-center gap-base p-sm cursor-pointer mb-xs text-on-primary-container opacity-80 hover:opacity-100 hover:bg-primary-fixed-dim/20 transition-all rounded-lg">
+<span class="material-symbols-outlined">cloud_queue</span>
+<span class="font-label-md text-label-md">Google Drive</span>
+</div>
+</nav>
+<div class="mt-auto border-t border-on-primary-container/10 pt-lg space-y-xs">
+<div class="flex items-center gap-base p-sm cursor-pointer text-on-primary-container opacity-80 hover:opacity-100 hover:bg-primary-fixed-dim/20 transition-all rounded-lg">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Configuraci\u00f3n</span>
+</div>
+<div class="flex items-center gap-base p-sm cursor-pointer text-error hover:bg-error/10 transition-all rounded-lg">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-md text-label-md">Cerrar Sesi\u00f3n</span>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 min-h-screen">
+<!-- Top Nav Bar -->
+<header class="bg-surface dark:bg-inverse-surface border-b border-outline-variant dark:border-outline shadow-sm h-16 flex justify-between items-center px-margin-desktop w-full sticky top-0 z-40">
+<div class="flex items-center gap-md">
+<h2 class="font-headline-md text-headline-md text-primary dark:text-inverse-primary font-bold">Log\u00edstica Pro</h2>
+<div class="hidden md:flex relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="pl-10 pr-4 py-1.5 bg-surface-container-low border-none rounded-lg focus:ring-2 focus:ring-primary w-64 text-body-md transition-all" placeholder="Buscar expedientes..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:bg-surface-container-low transition-colors p-2 rounded-full">notifications</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:bg-surface-container-low transition-colors p-2 rounded-full">settings</span>
+<button class="font-body-md text-primary font-bold hover:underline">Ayuda</button>
+</div>
+<div class="h-8 w-8 rounded-full overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A high-quality professional studio portrait of a business administrator with a neutral, confident expression. The lighting is crisp and cinematic, typical of a corporate environment. The person is wearing a sharp, dark suit against a soft-focus office background with blue and slate grey tones. Professional lighting highlights facial details and creates a clean, premium look." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOhNEHFtK8qBvzWFyw-5kviF5cNFSk0GdWndLE4OPj35efaw5EQbU9197LLDlQiqki0NW-75m-afGjSUjPtzjZllSNwsxa2i_9_BXSpAaw0UFYFXiaNCEGj0HmPhZ5Tnu4bLX6KirKbltlq4aPG5SMbC9RZlCl9vTdPdCzWCobvOC-MiU0j-MKzep4tOoiwQZ1NRLZdFuEd_1c2c2oKa1ThX7J6COhqQ0gZ_2H9PHwzSKN5tylFQBzcsE5A9XuTgrzXJSMgqsEd2Je"/>
+</div>
+</div>
+</header>
+<!-- Fraud Alert Banner -->
+<div class="mx-margin-desktop mt-md bg-error-container border-l-4 border-error p-4 rounded-lg flex items-center justify-between shadow-sm animate-pulse">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-error font-bold">warning</span>
+<div>
+<h3 class="font-numeric-data text-on-error-container">Alerta de Fraude Detectada</h3>
+<p class="text-body-md text-on-error-container opacity-80">Se han detectado 3 intentos de acceso no autorizados en la región Noroeste.</p>
+</div>
+</div>
+<button class="bg-error text-on-error px-md py-1.5 rounded-lg font-label-md hover:brightness-90 transition-all">Ver Detalles</button>
+</div>
+<section class="p-margin-desktop">
+<!-- KPI Grid -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-md mb-lg">
+<!-- KPI 1 -->
+<div class="bg-white border border-outline-variant p-md rounded-xl shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-base opacity-10 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[64px]" style="font-variation-settings: 'FILL' 1;">campaign</span>
+</div>
+<p class="font-label-md text-on-surface-variant uppercase tracking-widest">Campa\u00f1as Activas</p>
+<div class="flex items-baseline gap-xs mt-xs">
+<span class="font-headline-lg text-headline-lg text-primary">124</span>
+<span class="text-secondary font-bold text-label-md">+8%</span>
+</div>
+</div>
+<!-- KPI 2 -->
+<div class="bg-white border border-outline-variant p-md rounded-xl shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-base opacity-10 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[64px]" style="font-variation-settings: 'FILL' 1;">local_shipping</span>
+</div>
+<p class="font-label-md text-on-surface-variant uppercase tracking-widest">Entregas Totales</p>
+<div class="flex items-baseline gap-xs mt-xs">
+<span class="font-headline-lg text-headline-lg text-primary">14.2k</span>
+<span class="text-secondary font-bold text-label-md">+12%</span>
+</div>
+</div>
+<!-- KPI 3 -->
+<div class="bg-white border border-outline-variant p-md rounded-xl shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-base opacity-10 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[64px]" style="font-variation-settings: 'FILL' 1;">task_alt</span>
+</div>
+<p class="font-label-md text-on-surface-variant uppercase tracking-widest">Tasa de Éxito</p>
+<div class="flex items-baseline gap-xs mt-xs">
+<span class="font-headline-lg text-headline-lg text-primary">98.4%</span>
+<span class="text-secondary font-bold text-label-md">Meta: 99%</span>
+</div>
+</div>
+<!-- KPI 4 -->
+<div class="bg-primary-container p-md rounded-xl shadow-sm relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-primary-container via-primary-container to-secondary-fixed-dim/20"></div>
+<div class="relative z-10">
+<p class="font-label-md text-primary-fixed-dim uppercase tracking-widest">Eficiencia Operativa</p>
+<div class="flex items-baseline gap-xs mt-xs">
+<span class="font-headline-lg text-headline-lg text-white">High</span>
+<span class="text-secondary-fixed font-bold text-label-md">Optimizado</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Dashboard Layout -->
+<div class="grid grid-cols-12 gap-md">
+<!-- Weekly Performance Chart (Asymmetric) -->
+<div class="col-span-12 lg:col-span-8 bg-white border border-outline-variant p-lg rounded-xl shadow-sm">
+<div class="flex justify-between items-center mb-lg">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-primary">Rendimiento Semanal</h3>
+<p class="text-body-md text-on-surface-variant">Seguimiento de volumen de envíos en tiempo real</p>
+</div>
+<div class="flex gap-base">
+<button class="bg-surface-container text-on-surface-variant px-sm py-1 rounded-lg font-label-md border border-outline-variant hover:bg-surface-container-high">Día</button>
+<button class="bg-primary text-white px-sm py-1 rounded-lg font-label-md border border-primary">Semana</button>
+<button class="bg-surface-container text-on-surface-variant px-sm py-1 rounded-lg font-label-md border border-outline-variant hover:bg-surface-container-high">Mes</button>
+</div>
+</div>
+<!-- Mock Chart Visualization -->
+<div class="h-64 w-full flex items-end gap-md pt-base">
+<div class="flex-1 bg-surface-container-high rounded-t-lg relative group h-[40%] transition-all hover:bg-primary/20">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">1.2k</div>
+</div>
+<div class="flex-1 bg-surface-container-high rounded-t-lg relative group h-[55%] transition-all hover:bg-primary/20">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">1.8k</div>
+</div>
+<div class="flex-1 bg-surface-container-high rounded-t-lg relative group h-[75%] transition-all hover:bg-primary/20">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">2.4k</div>
+</div>
+<div class="flex-1 bg-primary rounded-t-lg relative group h-[90%] shadow-lg shadow-primary/20">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] px-2 py-1 rounded">3.1k</div>
+</div>
+<div class="flex-1 bg-surface-container-high rounded-t-lg relative group h-[60%] transition-all hover:bg-primary/20">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">2.0k</div>
+</div>
+<div class="flex-1 bg-surface-container-high rounded-t-lg relative group h-[45%] transition-all hover:bg-primary/20">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">1.5k</div>
+</div>
+<div class="flex-1 bg-surface-container-high rounded-t-lg relative group h-[30%] transition-all hover:bg-primary/20">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">0.9k</div>
+</div>
+</div>
+<div class="flex justify-between mt-sm border-t border-outline-variant pt-xs">
+<span class="font-label-md text-on-surface-variant">Lun</span>
+<span class="font-label-md text-on-surface-variant">Mar</span>
+<span class="font-label-md text-on-surface-variant">Mie</span>
+<span class="font-label-md text-on-surface-variant">Jue</span>
+<span class="font-label-md text-on-surface-variant">Vie</span>
+<span class="font-label-md text-on-surface-variant">Sab</span>
+<span class="font-label-md text-on-surface-variant">Dom</span>
+</div>
+</div>
+<!-- Logistics Map Preview -->
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-md">
+<div class="bg-white border border-outline-variant rounded-xl shadow-sm overflow-hidden flex-grow flex flex-col">
+<div class="p-md border-b border-outline-variant flex justify-between items-center">
+<h3 class="font-headline-sm text-headline-sm text-primary">Zona de Impacto</h3>
+<span class="material-symbols-outlined text-outline">more_vert</span>
+</div>
+<div class="relative flex-grow min-h-[200px]">
+<img class="absolute inset-0 w-full h-full object-cover grayscale brightness-90 contrast-125" data-alt="A sophisticated digital satellite map view of Mexico City, showing urban density with stylized blue and teal glowing data overlays. The map features fine grid lines, pulsing location markers, and sleek connection paths between logistics hubs. The aesthetic is professional, clean, and futuristic, representing high-tech tracking software with a premium corporate dark and light contrast." data-location="Mexico City" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWLvJ6wbiWrgr2x5jfsFD30XyNyNdBsEhnu8XlNyH47SrceVVRBJD09DLGRK6x3QwO1vISSYoRHgWqHIA7CkEUAQ4-YnvoAYXj0zkjR2mIbvJbXzOY5aQSawt5y9EXV0plaf-f36WbUMvY5KbvNMutJ6yHypgnqx69Hp6XOv7B6F6h2gybuUY9_6So8a6ZN5uqSPYyOQoOJAyHyKnsWpwODWXLpzcOyEuvRWOXHT_UDHSWGKGN92vageQfTbf7Y45iBzfkspOkYcNK"/>
+<div class="absolute inset-0 bg-gradient-to-t from-white/20 to-transparent"></div>
+<div class="absolute bottom-4 left-4 glass-card p-sm rounded-lg border border-white/20 shadow-lg">
+<p class="font-label-md text-primary font-bold">Concentración Máxima</p>
+<p class="text-[10px] text-on-surface-variant">CDMX - Área Metropolitana</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Recent Campaigns Table (Bento Style) -->
+<div class="col-span-12 bg-white border border-outline-variant rounded-xl shadow-sm overflow-hidden">
+<div class="p-lg border-b border-outline-variant flex justify-between items-center bg-surface-container-low/30">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-primary">Campañas Recientes</h3>
+<p class="text-body-md text-on-surface-variant">Estado y progreso de los últimos lotes certificados</p>
+</div>
+<button class="bg-primary text-white flex items-center gap-xs px-md py-2 rounded-lg font-label-md hover:scale-105 transition-transform active:scale-95">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                            Nueva Campa\u00f1a
+                        </button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full border-collapse">
+<thead>
+<tr class="bg-surface-container-low/50">
+<th class="text-left py-md px-lg font-label-md text-outline uppercase tracking-wider">Campaña / ID</th>
+<th class="text-left py-md px-lg font-label-md text-outline uppercase tracking-wider">Estado</th>
+<th class="text-left py-md px-lg font-label-md text-outline uppercase tracking-wider">Progreso</th>
+<th class="text-left py-md px-lg font-label-md text-outline uppercase tracking-wider">Fecha Inicio</th>
+<th class="text-right py-md px-lg font-label-md text-outline uppercase tracking-wider">Acción</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="py-md px-lg">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-lg bg-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-container">mark_as_unread</span>
+</div>
+<div>
+<p class="font-body-md text-primary font-bold">Entrega Certificada CDMX</p>
+<p class="text-[12px] text-outline">ID: GP-2024-089</p>
+</div>
+</div>
+</td>
+<td class="py-md px-lg">
+<span class="px-sm py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant text-[12px] font-bold">En Tránsito</span>
+</td>
+<td class="py-md px-lg">
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 65%;"></div>
+</div>
+<p class="text-[10px] mt-1 text-on-surface-variant">65% completado</p>
+</td>
+<td class="py-md px-lg">
+<p class="font-body-md">12 May 2024</p>
+</td>
+<td class="py-md px-lg text-right">
+<button class="material-symbols-outlined text-outline hover:text-primary transition-colors p-base">visibility</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="py-md px-lg">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-lg bg-tertiary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary-fixed-dim">verified</span>
+</div>
+<div>
+<p class="font-body-md text-primary font-bold">Correspondencia Bancaria</p>
+<p class="text-[12px] text-outline">ID: GP-2024-092</p>
+</div>
+</div>
+</td>
+<td class="py-md px-lg">
+<span class="px-sm py-1 rounded-full bg-surface-container-highest text-on-surface-variant text-[12px] font-bold">Finalizada</span>
+</td>
+<td class="py-md px-lg">
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 100%;"></div>
+</div>
+<p class="text-[10px] mt-1 text-on-surface-variant">100% completado</p>
+</td>
+<td class="py-md px-lg">
+<p class="font-body-md">08 May 2024</p>
+</td>
+<td class="py-md px-lg text-right">
+<button class="material-symbols-outlined text-outline hover:text-primary transition-colors p-base">visibility</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="py-md px-lg">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-lg bg-primary-fixed-dim/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">schedule</span>
+</div>
+<div>
+<p class="font-body-md text-primary font-bold">Validación Judicial MTY</p>
+<p class="text-[12px] text-outline">ID: GP-2024-095</p>
+</div>
+</div>
+</td>
+<td class="py-md px-lg">
+<span class="px-sm py-1 rounded-full bg-surface-container-low text-outline text-[12px] font-bold border border-outline-variant">Pendiente</span>
+</td>
+<td class="py-md px-lg">
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-outline h-full rounded-full" style="width: 5%;"></div>
+</div>
+<p class="text-[10px] mt-1 text-on-surface-variant">0% completado</p>
+</td>
+<td class="py-md px-lg">
+<p class="font-body-md">15 May 2024</p>
+</td>
+<td class="py-md px-lg text-right">
+<button class="material-symbols-outlined text-outline hover:text-primary transition-colors p-base">visibility</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-md flex justify-center bg-surface-container-low/10">
+<button class="text-primary font-bold text-label-md hover:underline flex items-center gap-xs">
+                            Ver todas las campa\u00f1as
+                            <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Floating Action Button (FAB) - Optional context-aware -->
+<button class="fixed bottom-margin-desktop right-margin-desktop h-14 w-14 bg-primary text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-50">
+<span class="material-symbols-outlined text-[32px]">support_agent</span>
+</button>
+<script>
+        // Micro-interactions and animations
+        document.addEventListener('DOMContentLoaded', () => {
+            // Hover effect for chart bars
+            const bars = document.querySelectorAll('.flex-1.bg-surface-container-high, .flex-1.bg-primary');
+            bars.forEach(bar => {
+                bar.addEventListener('mouseenter', () => {
+                    bar.style.filter = 'brightness(1.1)';
+                });
+                bar.addEventListener('mouseleave', () => {
+                    bar.style.filter = 'none';
+                });
+            });
+
+            // Smooth entrance animation for KPI cards
+            const kpiCards = document.querySelectorAll('.grid-cols-1 > div');
+            kpiCards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    card.style.transition = 'all 0.5s ease-out';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+    </script>
+</body></html>
